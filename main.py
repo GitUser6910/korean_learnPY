@@ -1,4 +1,5 @@
 import random
+import sys
 
 fruits_arr = [
     "사과 - яблоко",
@@ -103,22 +104,22 @@ def main():
     print("--------------")
     print("1 - Викторина")
     print("2 - Тренеровка письма")
-    option = int(input("--Введите вариант: "))
+    option = int(sys.argv[1]) if len(sys.argv) > 1 else int(input("--Введите вариант: "))
     random.shuffle(fruits_arr)
     random.shuffle(vegetables_arr)
 
     if option == 1:
         print("1 - Фрукты")
         print("2 - Овощи")
-        quiz = int(input("Введите тему: "))
+        quiz = int(sys.argv[2]) if len(sys.argv) > 2 else int(input("Введите тему: "))
         if quiz == 1:
             print("Нажимайте 'Enter' после каждого слова если вы его запомнили")
             for fruit in fruits_arr:
-                print(fruit)
+                print(fruit, end=' ')
                 input()
             print("А теперь викторина. Удачи!")
             for fruit, translation in zip(fruits_quiz, fruits_arr):
-                options = [translation.split(" - ")[0]] # Правильный ответ
+                options = [translation.split(" - ")[0]]  # Правильный ответ
                 while len(options) < 3:
                     random_word = random.choice(fruits_arr).split(" - ")[0]
                     if random_word not in options and random_word != fruit:
@@ -143,7 +144,7 @@ def main():
         elif quiz == 2:
             print("Нажимайте 'Enter' после каждого слова если вы его запомнили")
             for vegetable in vegetables_arr:
-                print(vegetable)
+                print(vegetable, end=' ')
                 input()
             print("А теперь викторина. Удачи!")
             for vegetable, translation in zip(vegetables_quiz, vegetables_arr):
@@ -172,33 +173,37 @@ def main():
     elif option == 2:
         print("1 - Фрукты")
         print("2 - Овощи")
-        quiz_write = int(input("Введите тему: "))
+        quiz_write = int(sys.argv[2]) if len(sys.argv) > 2 else int(input("Введите тему: "))
         if quiz_write == 1:
             print("Нажимайте 'Enter' после каждого слова если вы его запомнили")
             for fruit in fruits_arr:
-                print(fruit)
+                print(fruit, end=' ')
                 input()
             print("А теперь письменное закрепление материала. Удачи!")
             for translation in fruits_arr:
                 korean_word, russian_word = translation.split(" - ")
-                user_input = input(russian_word + " - ")
-                if user_input.lower() == korean_word.lower():
-                    print("Правильно")
-                else:
-                    print("Неправильно. Попробуйте еще раз")
+                while True:
+                    user_input = input(russian_word + " - ")
+                    if user_input.lower() == korean_word.lower():
+                        print("Правильно")
+                        break
+                    else:
+                        print("Неправильно. Попробуйте еще раз")
         elif quiz_write == 2:
             print("Нажимайте 'Enter' после каждого слова если вы его запомнили")
             for vegetable in vegetables_arr:
-                print(vegetable)
+                print(vegetable, end=' ')
                 input()
             print("А теперь письменное закрепление материала. Удачи!")
             for translation in vegetables_arr:
                 korean_word, russian_word = translation.split(" - ")
-                user_input = input(russian_word + " - ")
-                if user_input.lower() == korean_word.lower():
-                    print("Правильно")
-                else:
-                    print("Неправильно. Попробуйте еще раз")
+                while True:
+                    user_input = input(russian_word + " - ")
+                    if user_input.lower() == korean_word.lower():
+                        print("Правильно")
+                        break
+                    else:
+                        print("Неправильно. Попробуйте еще раз")
     else:
         print("Вы ввели неверный вариант")
 
