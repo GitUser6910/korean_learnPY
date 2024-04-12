@@ -184,7 +184,7 @@ def main():
                 korean_word, russian_word = translation.split(" - ")
                 while True:
                     user_input = input(russian_word + " - ")
-                    if user_input.lower() == korean_word.lower():
+                    if user_input.lower() == korean_word:
                         print("Правильно")
                         break
                     else:
@@ -199,7 +199,7 @@ def main():
                 korean_word, russian_word = translation.split(" - ")
                 while True:
                     user_input = input(russian_word + " - ")
-                    if user_input.lower() == korean_word.lower():
+                    if user_input.lower() == korean_word:
                         print("Правильно")
                         break
                     else:
